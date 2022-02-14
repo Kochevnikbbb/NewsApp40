@@ -23,6 +23,14 @@ import kg.geektech.newsapp40.databinding.FragmentProfileBinding;
 public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
 
+    private ActivityResultLauncher<String> xzz = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    binding.ivImage.setImageURI(uri);
+                }
+            });
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,13 +47,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setImage() {
-        ActivityResultLauncher<String> xzz = registerForActivityResult(new ActivityResultContracts.GetContent(),
-                new ActivityResultCallback<Uri>() {
-                    @Override
-                    public void onActivityResult(Uri uri) {
-                    binding.ivImage.setImageURI(uri);
-                    }
-                });
         binding.ivImage.setOnClickListener(view -> {
           xzz.launch("image/*");
 

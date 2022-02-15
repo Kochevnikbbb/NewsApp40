@@ -17,13 +17,18 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.util.ArrayList;
+
 import kg.geektech.newsapp40.R;
+import kg.geektech.newsapp40.adapter.AdapterNews;
 import kg.geektech.newsapp40.databinding.FragmentHomeBinding;
 import kg.geektech.newsapp40.models.News;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private AdapterNews adapter;
+    ArrayList<News> news;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +51,22 @@ public class HomeFragment extends Fragment {
                         Log.e("Home", "text" + news.getTitle());
                     }
                 });
+        loadData();
+        adapter = new AdapterNews(news);
+        binding.recyclerView.setAdapter(adapter);
+    }
+
+    private void loadData() {
+        news = new ArrayList<>();
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
+        news.add(new News("gvbunk", 5102561));
     }
 
     private void openFragment() {

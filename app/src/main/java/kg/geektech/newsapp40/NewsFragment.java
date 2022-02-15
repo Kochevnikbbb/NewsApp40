@@ -38,10 +38,10 @@ public class NewsFragment extends Fragment {
     private void save() {
         String text = binding.etTitle.getText().toString();
 
-        News news = new News(text,System.currentTimeMillis());
+        News news = new News(text, System.currentTimeMillis());
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("news",news);
+        bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
         close();
     }

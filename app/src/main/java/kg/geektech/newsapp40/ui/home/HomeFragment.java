@@ -58,15 +58,16 @@ public class HomeFragment extends Fragment {
 
     private void loadData() {
         news = new ArrayList<>();
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
-        news.add(new News("gvbunk", 5102561));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+        news.add(new News("huinya"));
+
     }
 
     private void openFragment() {

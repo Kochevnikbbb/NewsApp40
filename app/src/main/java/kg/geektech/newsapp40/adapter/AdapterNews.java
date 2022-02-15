@@ -1,10 +1,12 @@
 package kg.geektech.newsapp40.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -31,7 +33,13 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.CountViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull CountViewHolder holder, int position) {
-holder.bind(news.get(position));
+        holder.bind(news.get(position));
+        if (position % 2 == 0) {
+            binding.textItemNews.setBackgroundColor(Color.YELLOW);
+        }else {
+            binding.textItemNews.setBackgroundColor(Color.WHITE);
+
+        }
     }
 
     @Override
@@ -48,7 +56,7 @@ holder.bind(news.get(position));
         }
 
         public void bind(News news) {
-            String time = (String) android.text.format.DateFormat.format("HH:mm dd MMM yyyy", new Date(news.getCreteAt()));
+            String time = (String) android.text.format.DateFormat.format("HH:mm:ss  dd MMM yyyy", new Date(news.getCreteAt()));
             binding.textItemNews.setText(news.getTitle());
             binding.timeItemNews.setText(time);
 

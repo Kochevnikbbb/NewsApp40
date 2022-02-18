@@ -28,7 +28,14 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private AdapterNews adapter;
-    ArrayList<News> news;
+   // ArrayList<News> news;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new AdapterNews();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,32 +50,22 @@ public class HomeFragment extends Fragment {
         binding.fab.setOnClickListener(view1 -> {
             openFragment();
         });
+
         getParentFragmentManager().setFragmentResultListener("rk_news",
                 getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         News news = (News) result.getSerializable("news");
+                        adapter.addItem(news);
                         Log.e("Home", "text" + news.getTitle());
                     }
                 });
-        loadData();
-        adapter = new AdapterNews(news);
+
+
         binding.recyclerView.setAdapter(adapter);
     }
 
-    private void loadData() {
-        news = new ArrayList<>();
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
-        news.add(new News("huinya"));
 
-    }
 
     private void openFragment() {
         // NavHostFragment.findNavController(HomeFragment.this).navigate(HomeFragmentD);

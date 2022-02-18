@@ -17,10 +17,14 @@ import kg.geektech.newsapp40.models.News;
 
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.CountViewHolder> {
     private ItemNewsBinding binding;
-    ArrayList<News> news;
+    private ArrayList<News> news;
 
     public AdapterNews(ArrayList<News> news) {
         this.news = news;
+    }
+
+    public AdapterNews() {
+news = new ArrayList<>();
     }
 
     @NonNull
@@ -36,7 +40,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.CountViewHolde
         holder.bind(news.get(position));
         if (position % 2 == 0) {
             binding.textItemNews.setBackgroundColor(Color.YELLOW);
-        }else {
+        } else {
             binding.textItemNews.setBackgroundColor(Color.WHITE);
 
         }
@@ -45,6 +49,11 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.CountViewHolde
     @Override
     public int getItemCount() {
         return news.size();
+    }
+
+    public void addItem(News newss) {
+        news.add(0,newss);
+        notifyItemInserted(0);
     }
 
     static class CountViewHolder extends RecyclerView.ViewHolder {

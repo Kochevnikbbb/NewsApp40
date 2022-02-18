@@ -1,4 +1,4 @@
-package kg.geektech.newsapp40;
+package kg.geektech.newsapp40.ui.profile;
 
 import android.content.Intent;
 import android.net.Uri;

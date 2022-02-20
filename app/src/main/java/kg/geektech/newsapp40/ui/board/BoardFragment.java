@@ -26,8 +26,6 @@ public class BoardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_board, container, false);
         binding = FragmentBoardBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -35,12 +33,6 @@ public class BoardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*DotsIndicator dotsIndicator = findViewById(R.id.dots_indicator);
-        ViewPager2 viewPager = view.findViewById(R.id.viewPager);
-        BoardAdapter adapter = new BoardAdapter();
-        viewPager.setAdapter(adapter);
-        dotsIndicator.setViewPager2(viewPager);
-*/
         BoardAdapter adapter = new BoardAdapter();
         binding.viewPager.setAdapter(adapter);
         binding.dotsIndicator.setViewPager2(binding.viewPager);

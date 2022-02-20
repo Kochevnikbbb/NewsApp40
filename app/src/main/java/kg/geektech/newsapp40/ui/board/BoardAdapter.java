@@ -14,7 +14,7 @@ import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.ItemBoardBinding;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
-    private final int[] images = {R.drawable.tigr, R.drawable.uchiha, R.drawable.ic_add};
+    private final int[] images = {R.drawable.doctor, R.drawable.women, R.drawable.sara};
     private final String[] titles = {"Доктор", "Женщина", "Сара"};
     private final String[] descriptions = {
             "-Каковы мои шансы, доктор? \n-Один шанс из тысячи. \n-Так плохо? \n-Каждая тысяча добавляет один шанс",

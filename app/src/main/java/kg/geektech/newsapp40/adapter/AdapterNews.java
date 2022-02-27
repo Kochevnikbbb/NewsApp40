@@ -24,7 +24,7 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.CountViewHolde
     }
 
     public AdapterNews() {
-news = new ArrayList<>();
+        news = new ArrayList<>();
     }
 
     @NonNull
@@ -39,9 +39,9 @@ news = new ArrayList<>();
     public void onBindViewHolder(@NonNull CountViewHolder holder, int position) {
         holder.bind(news.get(position));
         if (position % 2 == 0) {
-            binding.textItemNews.setBackgroundColor(Color.YELLOW);
+            holder.binding.itemNews.setBackgroundColor(Color.YELLOW);
         } else {
-            binding.textItemNews.setBackgroundColor(Color.WHITE);
+            holder.binding.itemNews.setBackgroundColor(Color.WHITE);
 
         }
     }
@@ -52,7 +52,7 @@ news = new ArrayList<>();
     }
 
     public void addItem(News newss) {
-        news.add(0,newss);
+        news.add(0, newss);
         notifyItemInserted(0);
     }
 
@@ -68,7 +68,6 @@ news = new ArrayList<>();
             String time = (String) android.text.format.DateFormat.format("HH:mm:ss  dd MMM yyyy", new Date(news.getCreteAt()));
             binding.textItemNews.setText(news.getTitle());
             binding.timeItemNews.setText(time);
-
         }
     }
 }

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import kg.geektech.newsapp40.Prefs;
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.FragmentBoardBinding;
 
@@ -70,6 +71,8 @@ public class BoardFragment extends Fragment {
     }
 
     private void close() {
+        Prefs prefs = new Prefs(requireContext());
+        prefs.saveBoardState();
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigateUp();
 

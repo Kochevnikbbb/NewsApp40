@@ -1,6 +1,7 @@
 package kg.geektech.newsapp40;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,15 +36,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        navController.navigate(R.id.boardFragment);
+        Prefs prefs = new Prefs(this);
+        if (!prefs.isBoardShown()) // если это фолс нельзя использовать
+            navController.navigate(R.id.boardFragment);
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-                if (navDestination.getId() == R.id.boardFragment){
+                if (navDestination.getId() == R.id.boardFragment) {
                     navView.setVisibility(View.GONE);
                     getSupportActionBar().hide();
-                }else {
+                } else {
                     navView.setVisibility(View.VISIBLE);
                     getSupportActionBar().show();
                 }
@@ -51,4 +54,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+
+    }
 }

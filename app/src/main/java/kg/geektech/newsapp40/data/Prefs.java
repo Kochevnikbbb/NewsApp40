@@ -1,4 +1,4 @@
-package kg.geektech.newsapp40;
+package kg.geektech.newsapp40.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,6 +30,10 @@ public class Prefs {
     }
     public String getAvatar(){
         return preferences.getString("sfdhhbd","");
+    }
+
+    public void cleanPrefs(){
+        preferences.edit().clear().apply();
     }
 
 }

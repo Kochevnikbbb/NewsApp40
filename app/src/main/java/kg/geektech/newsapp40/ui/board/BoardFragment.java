@@ -14,9 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
-
-import kg.geektech.newsapp40.Prefs;
+import kg.geektech.newsapp40.data.Prefs;
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.FragmentBoardBinding;
 

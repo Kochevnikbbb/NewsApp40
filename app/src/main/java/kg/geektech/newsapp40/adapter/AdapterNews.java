@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import kg.geektech.newsapp40.databinding.ItemNewsBinding;
 import kg.geektech.newsapp40.models.News;
@@ -55,9 +56,13 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.CountViewHolde
         news.add(0, newss);
         notifyItemInserted(0);
     }
-
+    public void addItem(List<News> newsList){
+        news=(ArrayList<News>) newsList;
+        notifyDataSetChanged();
+    }
     static class CountViewHolder extends RecyclerView.ViewHolder {
         private ItemNewsBinding binding;
+
 
         public CountViewHolder(@NonNull ItemNewsBinding itemView) {
             super(itemView.getRoot());

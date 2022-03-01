@@ -21,9 +21,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
-import java.io.File;
-
-import kg.geektech.newsapp40.Prefs;
+import kg.geektech.newsapp40.data.Prefs;
 import kg.geektech.newsapp40.databinding.FragmentProfileBinding;
 
 

@@ -18,7 +18,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import kg.geektech.newsapp40.App;
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.adapter.AdapterNews;
 import kg.geektech.newsapp40.databinding.FragmentHomeBinding;
@@ -63,6 +65,8 @@ public class HomeFragment extends Fragment {
 
 
         binding.recyclerView.setAdapter(adapter);
+        List<News> newsList = App.dataBase.newsDao().getAllNews();
+        adapter.addItem(newsList);
     }
 
 

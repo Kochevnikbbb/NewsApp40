@@ -28,6 +28,7 @@ public class News implements Serializable {
         this.creteAt = creteAt;
         this.description = description;
     }
+    public News(){}
 
     public News(String title) {
         this.title = title;

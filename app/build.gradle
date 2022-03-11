@@ -1,14 +1,15 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "kg.geektech.newsapp40"
         minSdk 23
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -40,7 +41,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.4.0'
     implementation 'androidx.navigation:navigation-ui:2.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.+'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
@@ -53,6 +54,14 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    def lottieVersion = "4.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
 
 
 }

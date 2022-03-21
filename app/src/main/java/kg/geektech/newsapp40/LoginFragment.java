@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +35,7 @@ public class LoginFragment extends Fragment {
     private FragmentLoginBinding binding;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private String onCodeInet;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +56,7 @@ public class LoginFragment extends Fragment {
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
+                Log.d("TAG", "onVerificationCompleted:" + phoneAuthCredential);
             }
 
             @Override
@@ -65,6 +68,10 @@ public class LoginFragment extends Fragment {
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 // ловим код в этом методе
+                onCodeInet = s;
+               // checkingSmsCode(s);
+               // mResendToken = token;
+
 
             }
         };
@@ -73,21 +80,22 @@ public class LoginFragment extends Fragment {
     private void init() {
         mAuth = FirebaseAuth.getInstance();
 
-        String phone = binding.etNumber.getText().toString().trim();
-        if (TextUtils.isEmpty(phone)){
-            binding.etNumber.setError("Ошибка");
-            return;
-        }
+//        if (TextUtils.isEmpty(phone)){
+//            binding.etNumber.setError("Ошибка");
+//            return;
+//        }
         binding.btn.setOnClickListener(view -> {
-            register(phone);
+            register();
+            checkingSmsCode();
         });
 
     }
 
-    private void register(String phoneNumber) {
+    private void register() {
+        String phone = binding.etNumber.getText().toString().trim();
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                .setPhoneNumber(phoneNumber)
+                .setPhoneNumber(phone)
                 .setTimeout(60l, TimeUnit.SECONDS)
                 .setActivity(requireActivity())
                 .setCallbacks(mCallbacks)
@@ -95,16 +103,15 @@ public class LoginFragment extends Fragment {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    public void checkingSmsCode(String smsCode){
+    public void checkingSmsCode(){
         String code = binding.etCode.getText().toString().trim();
         if (TextUtils.isEmpty(code)){
             binding.etCode.setError("Ошибка");
             return;
         }
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential("codeFromInet", code);
+
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(onCodeInet, code);
         signInWithPhoneAuthCredential(credential);
-
-
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -112,7 +119,9 @@ public class LoginFragment extends Fragment {
                 .addOnCompleteListener((Executor) this, (OnCompleteListener<AuthResult>) task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = task.getResult().getUser();
-                       // findNavcontroller.navigate(R.id.boardFragment);
+
+                        NavController navController = Navigation.findNavController(requireActivity(), R.id.boardFragment);
+                        navController.navigateUp();
                     }
                 });
     }

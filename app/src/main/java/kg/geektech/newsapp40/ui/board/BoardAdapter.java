@@ -1,5 +1,6 @@
 package kg.geektech.newsapp40.ui.board;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kg.geektech.newsapp40.R;
+import kg.geektech.newsapp40.data.Prefs;
 import kg.geektech.newsapp40.databinding.ItemBoardBinding;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
@@ -23,6 +25,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     };
     private ItemBoardBinding binding;
     private OnStartClickListener clickListener;
+    private Context context;
 
     @NonNull
     @Override
@@ -54,12 +57,17 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         public ViewHolder(@NonNull ItemBoardBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
+            binding.btn.setOnClickListener(view -> {
+                new Prefs(context).saveBoardState();
+                clickListener.onStartClickListener();
+            });
         }
 
         public void bind(int position) {
             binding.textTitle.setText(titles[position]);
             binding.textDesc.setText(descriptions[position]);
             binding.ivBoard.setAnimation(images[position]);
+
 
             if (position == titles.length - 1) {
                 binding.btn.setVisibility(View.VISIBLE);

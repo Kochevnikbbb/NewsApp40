@@ -40,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         prefs = new Prefs(this);
+
         if (!prefs.isBoardShown()) // если это фолс нельзя использовать
             navController.navigate(R.id.boardFragment);
+       // navController.navigate(R.id.loginFragment);
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override

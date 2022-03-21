@@ -63,5 +63,7 @@ dependencies {
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
 
+    implementation 'com.google.firebase:firebase-firestore'
+
 
 }

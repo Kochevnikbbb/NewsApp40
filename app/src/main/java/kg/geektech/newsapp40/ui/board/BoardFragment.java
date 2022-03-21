@@ -39,6 +39,7 @@ public class BoardFragment extends Fragment {
             close();
         });
 
+
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -50,12 +51,7 @@ public class BoardFragment extends Fragment {
                 }
             }
         });
-        adapter.setClickListener(new OnStartClickListener() {
-            @Override
-            public void onStartClickListener() {
-                close();
-            }
-        });
+        adapter.setClickListener(() -> close());
 
 
 
